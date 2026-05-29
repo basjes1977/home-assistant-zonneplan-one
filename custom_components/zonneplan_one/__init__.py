@@ -81,7 +81,8 @@ async def async_setup(
 async def async_setup_entry(hass: HomeAssistant, entry: ZonneplanConfigEntry) -> bool:  # noqa: PLR0912
     """Set up Zonneplan from a config entry."""
     # Get enable_gas option, default to True
-    enable_gas = entry.options.get(CONF_ENABLE_GAS, True)
+    # Guard against None options dict (can occur on first setup before options are saved)
+    enable_gas = (entry.options or {}).get(CONF_ENABLE_GAS, True)
 
     implementation = await config_entry_oauth2_flow.async_get_config_entry_implementation(hass, entry)
 
