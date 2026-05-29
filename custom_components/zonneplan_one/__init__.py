@@ -192,6 +192,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ZonneplanConfigEntry) ->
                             address_group["uuid"],
                             connection["uuid"],
                             contracts[P1_INSTALL],
+                            enable_gas=enable_gas,
                         ),
                     )
 
